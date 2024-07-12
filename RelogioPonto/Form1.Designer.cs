@@ -36,6 +36,8 @@ namespace RelogioPonto
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuVerRegistros = new System.Windows.Forms.ToolStripMenuItem();
+            this.açõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compactarRegistrosDoMesAnteriorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,9 +53,10 @@ namespace RelogioPonto
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sairToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.mnuVerRegistros});
+            this.mnuVerRegistros,
+            this.açõesToolStripMenuItem});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(139, 54);
+            this.menu.Size = new System.Drawing.Size(181, 98);
             // 
             // sairToolStripMenuItem
             // 
@@ -73,6 +76,21 @@ namespace RelogioPonto
             this.mnuVerRegistros.Size = new System.Drawing.Size(180, 22);
             this.mnuVerRegistros.Text = "Ver registros";
             this.mnuVerRegistros.Click += new System.EventHandler(this.mnuVerRegistros_Click);
+            // 
+            // açõesToolStripMenuItem
+            // 
+            this.açõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.compactarRegistrosDoMesAnteriorToolStripMenuItem});
+            this.açõesToolStripMenuItem.Name = "açõesToolStripMenuItem";
+            this.açõesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.açõesToolStripMenuItem.Text = "Ações";
+            // 
+            // compactarRegistrosDoMesAnteriorToolStripMenuItem
+            // 
+            this.compactarRegistrosDoMesAnteriorToolStripMenuItem.Name = "compactarRegistrosDoMesAnteriorToolStripMenuItem";
+            this.compactarRegistrosDoMesAnteriorToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
+            this.compactarRegistrosDoMesAnteriorToolStripMenuItem.Text = "Compactar registros do mes anterior";
+            this.compactarRegistrosDoMesAnteriorToolStripMenuItem.Click += new System.EventHandler(this.compactarRegistrosDoMesAnteriorToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -94,6 +112,8 @@ namespace RelogioPonto
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuVerRegistros;
+        private System.Windows.Forms.ToolStripMenuItem açõesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem compactarRegistrosDoMesAnteriorToolStripMenuItem;
     }
 }
 

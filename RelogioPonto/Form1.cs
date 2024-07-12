@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Ionic.Zip;
 using Microsoft.Win32;
 
 namespace RelogioPonto
@@ -103,6 +104,38 @@ namespace RelogioPonto
         private void mnuVerRegistros_Click(object sender, EventArgs e)
         {
             Process.Start(AppDir);
+        }
+
+        private void compactarRegistrosDoMesAnteriorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompressFiles();
+        }
+
+        // compress all files from last month in the AppDir path
+        private void CompressFiles()
+        {
+            int mesAnterior = DateTime.Now.Month - 1;
+
+            var files = Directory.EnumerateFiles(AppDir, $"Ponto-{DateTime.Now:yyyy}-{mesAnterior:00}-*.txt").ToList();
+
+            if (files.Count == 0)
+            {
+                MessageBox.Show("Não há arquivos para compactar");
+                return;
+            }
+
+            string zipFile = Path.Combine(AppDir, $"Ponto-{DateTime.Now:yyyy}-{mesAnterior:00}.zip");
+
+            using (var zip = new ZipFile())
+            {
+                zip.AddFiles(files, false, "");
+                zip.Save(zipFile);
+            }
+
+            foreach (var file in files)
+                File.Delete(file);
+
+            MessageBox.Show("Compactação realizada com sucesso");
         }
     }
 }

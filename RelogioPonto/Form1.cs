@@ -137,5 +137,11 @@ namespace RelogioPonto
 
             MessageBox.Show("Compactação realizada com sucesso");
         }
+
+        private void geradorDeSenhasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PassGenerator passGenerator = new PassGenerator();
+            passGenerator.Show();
+        }
     }
 }

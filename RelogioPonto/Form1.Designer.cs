@@ -38,6 +38,7 @@ namespace RelogioPonto
             this.mnuVerRegistros = new System.Windows.Forms.ToolStripMenuItem();
             this.açõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compactarRegistrosDoMesAnteriorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.geradorDeSenhasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,39 +51,34 @@ namespace RelogioPonto
             // 
             // menu
             // 
-            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sairToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.mnuVerRegistros,
-            this.açõesToolStripMenuItem});
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.sairToolStripMenuItem, this.toolStripMenuItem1, this.mnuVerRegistros, this.açõesToolStripMenuItem });
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(181, 98);
+            this.menu.Size = new System.Drawing.Size(153, 98);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // mnuVerRegistros
             // 
             this.mnuVerRegistros.Name = "mnuVerRegistros";
-            this.mnuVerRegistros.Size = new System.Drawing.Size(180, 22);
+            this.mnuVerRegistros.Size = new System.Drawing.Size(152, 22);
             this.mnuVerRegistros.Text = "Ver registros";
             this.mnuVerRegistros.Click += new System.EventHandler(this.mnuVerRegistros_Click);
             // 
             // açõesToolStripMenuItem
             // 
-            this.açõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.compactarRegistrosDoMesAnteriorToolStripMenuItem});
+            this.açõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.compactarRegistrosDoMesAnteriorToolStripMenuItem, this.geradorDeSenhasToolStripMenuItem });
             this.açõesToolStripMenuItem.Name = "açõesToolStripMenuItem";
-            this.açõesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.açõesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.açõesToolStripMenuItem.Text = "Ações";
             // 
             // compactarRegistrosDoMesAnteriorToolStripMenuItem
@@ -91,6 +87,13 @@ namespace RelogioPonto
             this.compactarRegistrosDoMesAnteriorToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
             this.compactarRegistrosDoMesAnteriorToolStripMenuItem.Text = "Compactar registros do mes anterior";
             this.compactarRegistrosDoMesAnteriorToolStripMenuItem.Click += new System.EventHandler(this.compactarRegistrosDoMesAnteriorToolStripMenuItem_Click);
+            // 
+            // geradorDeSenhasToolStripMenuItem
+            // 
+            this.geradorDeSenhasToolStripMenuItem.Name = "geradorDeSenhasToolStripMenuItem";
+            this.geradorDeSenhasToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
+            this.geradorDeSenhasToolStripMenuItem.Text = "Gerar senha";
+            this.geradorDeSenhasToolStripMenuItem.Click += new System.EventHandler(this.geradorDeSenhasToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -102,8 +105,9 @@ namespace RelogioPonto
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.menu.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
+
+        private System.Windows.Forms.ToolStripMenuItem geradorDeSenhasToolStripMenuItem;
 
         #endregion
 

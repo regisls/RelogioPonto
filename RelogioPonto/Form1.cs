@@ -143,5 +143,11 @@ namespace RelogioPonto
             PassGenerator passGenerator = new PassGenerator();
             passGenerator.Show();
         }
+
+        private void gerarGUIDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GuidGenerator guidGenerator = new GuidGenerator();
+            guidGenerator.Show();
+        }
     }
 }

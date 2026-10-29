@@ -67,34 +67,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Task.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GuidGenerator.cs">
+    <Compile Include="Forms\GuidGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GuidGenerator.Designer.cs">
+    <Compile Include="Forms\GuidGenerator.Designer.cs">
       <DependentUpon>GuidGenerator.cs</DependentUpon>
     </Compile>
-    <Compile Include="PassGenerator.cs">
+    <Compile Include="Forms\PassGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PassGenerator.Designer.cs">
+    <Compile Include="Forms\PassGenerator.Designer.cs">
       <DependentUpon>PassGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TimeAdvisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TimeAdvisor.Designer.cs">
+      <DependentUpon>TimeAdvisor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GuidGenerator.resx">
+    <EmbeddedResource Include="Forms\GuidGenerator.resx">
       <DependentUpon>GuidGenerator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PassGenerator.resx">
+    <EmbeddedResource Include="Forms\PassGenerator.resx">
       <DependentUpon>PassGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TimeAdvisor.resx">
+      <DependentUpon>TimeAdvisor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

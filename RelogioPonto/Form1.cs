@@ -23,6 +23,11 @@ namespace RelogioPonto
 
         private const string SAIDA = "SAIDA";
         private const string ENTRADA = "ENTRADA";
+
+        private string _ultimoTipoEvento = null;
+        private DateTime _ultimoTempoEvento = DateTime.MinValue;
+        private static readonly TimeSpan _limiarDeduplicacao = TimeSpan.FromSeconds(5);
+
         public Form1()
         {
             InitializeComponent();
@@ -38,60 +43,60 @@ namespace RelogioPonto
 
             SystemEvents.SessionSwitch += new SessionSwitchEventHandler(SystemEvents_SessionSwitch);
             SystemEvents.SessionEnding += new SessionEndingEventHandler(SystemEvents_SessionEnding);
+            SystemEvents.PowerModeChanged += new PowerModeChangedEventHandler(SystemEvents_PowerModeChanged);
 
-            string observacao = "Relógio Ponto iniciado";
-            string evento = ENTRADA;
-
-            GravarLog(evento, observacao);
+            GravarLog(ENTRADA, "Relógio Ponto iniciado");
         }
 
         private void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
         {
-            string observacao = string.Empty;
-            string evento = "";
-
             if (e.Reason == SessionSwitchReason.SessionLock)
-            {
-                //I left my desk
-                observacao = "Bloqueio do computador";
-                evento = SAIDA;
-            }
+                GravarLog(SAIDA, "Bloqueio do computador");
             else if (e.Reason == SessionSwitchReason.SessionUnlock)
-            {
-                //I returned to my desk
-                observacao = "Desbloqueio do computador";
-                evento = ENTRADA;
-            }
-
-            GravarLog(evento, observacao);
+                GravarLog(ENTRADA, "Desbloqueio do computador");
         }
 
         private void SystemEvents_SessionEnding(object sender, SessionEndingEventArgs e)
         {
-            string observacao = string.Empty;
-            string evento = SAIDA;
+            string observacao = e.Reason == SessionEndReasons.Logoff
+                ? "Logoff do usuário"
+                : "Máquina desligada";
 
-            switch(e.Reason)
-            {
-                case SessionEndReasons.Logoff:
-                    observacao = "Logoff do usuário";
-                    break;
-                case SessionEndReasons.SystemShutdown:
-                    observacao = "Máquina desligada";
-                    break;
-            }
+            GravarLog(SAIDA, observacao);
+        }
 
-            GravarLog(evento, observacao);
+        private void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
+        {
+            if (e.Mode == PowerModes.Suspend)
+                GravarLog(SAIDA, "Computador em suspensão");
+            else if (e.Mode == PowerModes.Resume)
+                GravarLog(ENTRADA, "Computador retomado da suspensão");
         }
 
         private void GravarLog(string Evento, string observacao = "")
         {
-            this.NomeArquivo = Path.Combine(AppDir, $"Ponto-{DateTime.Now:yyyy-MM-dd}.txt");
-            this.UltimoEvento = $"{Evento,-7} | {DateTime.Now:HH:mm} | {observacao}";
+            if (string.IsNullOrEmpty(Evento))
+                return;
 
-            File.AppendAllText(NomeArquivo, $"{UltimoEvento}\r\n");
-            
-            AppIcone.Text = $"Relógio ponto - {UltimoEvento}";
+            var agora = DateTime.Now;
+            if (Evento == _ultimoTipoEvento && agora - _ultimoTempoEvento < _limiarDeduplicacao)
+                return;
+
+            _ultimoTipoEvento = Evento;
+            _ultimoTempoEvento = agora;
+
+            this.NomeArquivo = Path.Combine(AppDir, $"Ponto-{agora:yyyy-MM-dd}.txt");
+            this.UltimoEvento = $"{Evento,-7} | {agora:HH:mm:ss} | {observacao}";
+
+            try
+            {
+                File.AppendAllText(NomeArquivo, $"{UltimoEvento}\r\n");
+                AppIcone.Text = $"Relógio ponto - {UltimoEvento}";
+            }
+            catch (Exception ex)
+            {
+                AppIcone.ShowBalloonTip(5000, "Erro ao gravar registro", ex.Message, ToolTipIcon.Error);
+            }
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -101,30 +106,27 @@ namespace RelogioPonto
             Application.Exit();
         }
 
-        private void mnuVerRegistros_Click(object sender, EventArgs e)
-        {
-            Process.Start(AppDir);
-        }
-
-        private void compactarRegistrosDoMesAnteriorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CompressFiles();
-        }
-
         // compress all files from last month in the AppDir path
         private void CompressFiles()
         {
             int mesAnterior = DateTime.Now.Month - 1;
+            int ano = DateTime.Now.Year;
 
-            var files = Directory.EnumerateFiles(AppDir, $"Ponto-{DateTime.Now:yyyy}-{mesAnterior:00}-*.txt").ToList();
+            if (mesAnterior == 0)
+            {
+                mesAnterior = 12;
+                ano--;
+            }
+
+            var files = Directory.EnumerateFiles(AppDir, $"Ponto-{ano}-{mesAnterior:00}-*.txt").ToList();
 
             if (files.Count == 0)
             {
-                MessageBox.Show("Não há arquivos para compactar");
+                MessageBox.Show("Não há arquivos para compactar", "Relógio Ponto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            string zipFile = Path.Combine(AppDir, $"Ponto-{DateTime.Now:yyyy}-{mesAnterior:00}.zip");
+            string zipFile = Path.Combine(AppDir, $"Ponto-{ano}-{mesAnterior:00}.zip");
 
             using (var zip = new ZipFile())
             {
@@ -135,7 +137,7 @@ namespace RelogioPonto
             foreach (var file in files)
                 File.Delete(file);
 
-            MessageBox.Show("Compactação realizada com sucesso");
+            MessageBox.Show("Compactação realizada com sucesso", "Relógio Ponto", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void geradorDeSenhasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,6 +150,35 @@ namespace RelogioPonto
         {
             GuidGenerator guidGenerator = new GuidGenerator();
             guidGenerator.Show();
+        }
+
+        private void visualisarTodosOsRegistrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(AppDir);
+        }
+
+        private void abrirReistrosDeHojeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string arquivoHoje = Path.Combine(AppDir, $"Ponto-{DateTime.Now:yyyy-MM-dd}.txt");
+
+            if (!File.Exists(arquivoHoje))
+            {
+                MessageBox.Show("Nenhum registro encontrado para hoje.", "Registros de hoje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Process.Start(arquivoHoje);
+        }
+
+        private void arquivarMesAnteriorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompressFiles();
+        }
+
+        private void analisarRegistrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TimeAdvisor timeAdvisor = new TimeAdvisor();
+            timeAdvisor.Show();
         }
     }
 }

@@ -40,8 +40,13 @@ namespace RelogioPonto
             
             while (i < int.Parse(textBox1.Text))
             {
-                lstGuids.Items.Add(Guid.NewGuid().ToString());
+                if (chkUpperCase.Checked)
+                    lstGuids.Items.Add(Guid.NewGuid().ToString().ToUpper());
+                else
+                    lstGuids.Items.Add(Guid.NewGuid().ToString());
+                
                 lstGuids.Update();
+                
                 i++;
             }
         }
@@ -59,7 +64,10 @@ namespace RelogioPonto
                 string selecionados = "";
                 foreach (var item in lstGuids.SelectedItems.Cast<string>())
                 {
-                    selecionados += item + Environment.NewLine;
+                    selecionados += item;
+                    
+                    if (lstGuids.SelectedItems.Count > 1)
+                        selecionados += Environment.NewLine;
                 }
                 Clipboard.SetText(selecionados);
             }

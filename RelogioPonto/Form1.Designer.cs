@@ -35,11 +35,15 @@ namespace RelogioPonto
             this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuVerRegistros = new System.Windows.Forms.ToolStripMenuItem();
             this.açõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compactarRegistrosDoMesAnteriorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geradorDeSenhasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerarGUIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pontoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visualisarTodosOsRegistrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirReistrosDeHojeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analisarRegistrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.arquivarMesAnteriorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,56 +56,85 @@ namespace RelogioPonto
             // 
             // menu
             // 
-            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.sairToolStripMenuItem, this.toolStripMenuItem1, this.mnuVerRegistros, this.açõesToolStripMenuItem });
+            this.menu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.sairToolStripMenuItem, this.toolStripMenuItem1, this.açõesToolStripMenuItem, this.pontoToolStripMenuItem });
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(139, 76);
+            this.menu.Size = new System.Drawing.Size(119, 76);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(135, 6);
-            // 
-            // mnuVerRegistros
-            // 
-            this.mnuVerRegistros.Name = "mnuVerRegistros";
-            this.mnuVerRegistros.Size = new System.Drawing.Size(138, 22);
-            this.mnuVerRegistros.Text = "Ver registros";
-            this.mnuVerRegistros.Click += new System.EventHandler(this.mnuVerRegistros_Click);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(115, 6);
             // 
             // açõesToolStripMenuItem
             // 
-            this.açõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.compactarRegistrosDoMesAnteriorToolStripMenuItem, this.geradorDeSenhasToolStripMenuItem, this.gerarGUIDToolStripMenuItem });
+            this.açõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.geradorDeSenhasToolStripMenuItem, this.gerarGUIDToolStripMenuItem });
             this.açõesToolStripMenuItem.Name = "açõesToolStripMenuItem";
-            this.açõesToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.açõesToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.açõesToolStripMenuItem.Text = "Ações";
-            // 
-            // compactarRegistrosDoMesAnteriorToolStripMenuItem
-            // 
-            this.compactarRegistrosDoMesAnteriorToolStripMenuItem.Name = "compactarRegistrosDoMesAnteriorToolStripMenuItem";
-            this.compactarRegistrosDoMesAnteriorToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
-            this.compactarRegistrosDoMesAnteriorToolStripMenuItem.Text = "Compactar registros do mes anterior";
-            this.compactarRegistrosDoMesAnteriorToolStripMenuItem.Click += new System.EventHandler(this.compactarRegistrosDoMesAnteriorToolStripMenuItem_Click);
             // 
             // geradorDeSenhasToolStripMenuItem
             // 
+            this.geradorDeSenhasToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("geradorDeSenhasToolStripMenuItem.Image")));
             this.geradorDeSenhasToolStripMenuItem.Name = "geradorDeSenhasToolStripMenuItem";
-            this.geradorDeSenhasToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
+            this.geradorDeSenhasToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.geradorDeSenhasToolStripMenuItem.Text = "Gerar senha";
             this.geradorDeSenhasToolStripMenuItem.Click += new System.EventHandler(this.geradorDeSenhasToolStripMenuItem_Click);
             // 
             // gerarGUIDToolStripMenuItem
             // 
             this.gerarGUIDToolStripMenuItem.Name = "gerarGUIDToolStripMenuItem";
-            this.gerarGUIDToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
+            this.gerarGUIDToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.gerarGUIDToolStripMenuItem.Text = "Gerar GUID\'s";
             this.gerarGUIDToolStripMenuItem.Click += new System.EventHandler(this.gerarGUIDToolStripMenuItem_Click);
+            // 
+            // pontoToolStripMenuItem
+            // 
+            this.pontoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.visualisarTodosOsRegistrosToolStripMenuItem, this.abrirReistrosDeHojeToolStripMenuItem, this.analisarRegistrosToolStripMenuItem, this.toolStripMenuItem2, this.arquivarMesAnteriorToolStripMenuItem });
+            this.pontoToolStripMenuItem.Name = "pontoToolStripMenuItem";
+            this.pontoToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.pontoToolStripMenuItem.Text = "Ponto";
+            // 
+            // visualisarTodosOsRegistrosToolStripMenuItem
+            // 
+            this.visualisarTodosOsRegistrosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("visualisarTodosOsRegistrosToolStripMenuItem.Image")));
+            this.visualisarTodosOsRegistrosToolStripMenuItem.Name = "visualisarTodosOsRegistrosToolStripMenuItem";
+            this.visualisarTodosOsRegistrosToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.visualisarTodosOsRegistrosToolStripMenuItem.Text = "Visualisar todos os registros";
+            this.visualisarTodosOsRegistrosToolStripMenuItem.Click += new System.EventHandler(this.visualisarTodosOsRegistrosToolStripMenuItem_Click);
+            // 
+            // abrirReistrosDeHojeToolStripMenuItem
+            // 
+            this.abrirReistrosDeHojeToolStripMenuItem.Name = "abrirReistrosDeHojeToolStripMenuItem";
+            this.abrirReistrosDeHojeToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.abrirReistrosDeHojeToolStripMenuItem.Text = "Abrir registros de hoje";
+            this.abrirReistrosDeHojeToolStripMenuItem.Click += new System.EventHandler(this.abrirReistrosDeHojeToolStripMenuItem_Click);
+            // 
+            // analisarRegistrosToolStripMenuItem
+            // 
+            this.analisarRegistrosToolStripMenuItem.Name = "analisarRegistrosToolStripMenuItem";
+            this.analisarRegistrosToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.analisarRegistrosToolStripMenuItem.Text = "Analisar registros";
+            this.analisarRegistrosToolStripMenuItem.Click += new System.EventHandler(this.analisarRegistrosToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(296, 6);
+            // 
+            // arquivarMesAnteriorToolStripMenuItem
+            // 
+            this.arquivarMesAnteriorToolStripMenuItem.Name = "arquivarMesAnteriorToolStripMenuItem";
+            this.arquivarMesAnteriorToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.arquivarMesAnteriorToolStripMenuItem.Text = "Arquivar registros do mes anterior";
+            this.arquivarMesAnteriorToolStripMenuItem.Click += new System.EventHandler(this.arquivarMesAnteriorToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -115,6 +148,14 @@ namespace RelogioPonto
             this.ResumeLayout(false);
         }
 
+        private System.Windows.Forms.ToolStripMenuItem analisarRegistrosToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem pontoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visualisarTodosOsRegistrosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abrirReistrosDeHojeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem arquivarMesAnteriorToolStripMenuItem;
+
         private System.Windows.Forms.ToolStripMenuItem gerarGUIDToolStripMenuItem;
 
         private System.Windows.Forms.ToolStripMenuItem geradorDeSenhasToolStripMenuItem;
@@ -125,9 +166,7 @@ namespace RelogioPonto
         private System.Windows.Forms.ContextMenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem mnuVerRegistros;
         private System.Windows.Forms.ToolStripMenuItem açõesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem compactarRegistrosDoMesAnteriorToolStripMenuItem;
     }
 }
 
